@@ -33,11 +33,11 @@ func main() {
 	caCertPool.AppendCertsFromPEM(caCert)
 
 	// https client tls config
-	// InsecureSkipVerify true means not validate server certificate (so no need to set RootCAs)
+
+	// export GODEBUG="x509ignoreCN=0"
 	tlsConfig := &tls.Config{
 		Certificates: []tls.Certificate{cert},
-		//RootCAs:            caCertPool,
-		InsecureSkipVerify: true,
+		RootCAs:      caCertPool,
 	}
 
 	transport := &http.Transport{TLSClientConfig: tlsConfig}
