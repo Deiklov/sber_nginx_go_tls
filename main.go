@@ -11,9 +11,6 @@ import (
 	"path/filepath"
 )
 
-//netcat http server
-//while true; do    echo -e "HTTP/1.1 200 OK\n\n $(date)" | nc -l -p 1500 -q 1; done
-
 func main() {
 	// load client cert
 	home, _ := os.Getwd()
@@ -42,7 +39,7 @@ func main() {
 		//RootCAs:            caCertPool,
 		InsecureSkipVerify: true,
 	}
-	tlsConfig.BuildNameToCertificate()
+
 	transport := &http.Transport{TLSClientConfig: tlsConfig}
 
 	// https client request
