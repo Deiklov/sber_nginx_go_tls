@@ -1,0 +1,12 @@
+server {
+    listen 80;
+
+    ssl_protocols           TLSv1.2 TLSv1.3;
+
+    location /mef {
+        proxy_pass                      https://nginxmef:7070;
+        proxy_ssl_certificate         /etc/nginx/certs/client.crt;
+        proxy_ssl_certificate_key     /etc/nginx/certs/client.key;
+        proxy_ssl_trusted_certificate /etc/nginx/certs/RootCA.crt;
+    }
+}

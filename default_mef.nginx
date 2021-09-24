@@ -1,0 +1,17 @@
+server {
+    listen 7070 ssl;
+    ssl_certificate        /etc/nginx/certs/localhost.crt;
+    ssl_certificate_key    /etc/nginx/certs/localhost.key;
+    ssl_protocols           TLSv1.2 TLSv1.3;
+
+    ssl_client_certificate /etc/nginx/certs/RootCA.crt;
+    ssl_verify_client      on;
+
+    location /mef {
+        proxy_pass http://mef:5050;
+    }
+
+    location /mef/hi {
+        return 200 "<h1>kek shrek</h1>";
+    }
+}
